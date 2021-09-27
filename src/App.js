@@ -1,5 +1,8 @@
 import React from "react";
 import Header from "./components/Header";
+import styled from "@emotion/styled";
+import Form from "./components/Form";
+import Flip from "@stahl.luke/react-reveal/Flip"
 
 const Container = styled.div`
   max-width: 600px;
@@ -11,10 +14,18 @@ const ContainerForm = styled.div`
   padding: 3rem;
 `;
 
-import styled from "@emotion/styled";
-
 const App = () => {
-  return <Header title="Car Insurance Quote" />;
-}
+  return (
+    <Flip bottom cascade>
+      <Container>
+        <Header title="Car Insurance Quote" />
+
+        <ContainerForm>
+          <Form />
+        </ContainerForm>
+      </Container>
+    </Flip>
+  );
+};
 
 export default App;

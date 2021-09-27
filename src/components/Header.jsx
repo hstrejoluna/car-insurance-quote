@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Fade from "@stahl.luke/react-reveal";
 
 const ContainerHeader = styled.header`
-  background-color: #26c6da;
+  background-color: #203a43;
   padding: 10px;
   font-weight: bold;
   color: #ffffff;
@@ -18,7 +19,9 @@ const TextHeader = styled.h1`
 const Header = ({ title }) => {
   return (
     <ContainerHeader>
-      <TextHeader>{title}</TextHeader>
+      <TextHeader>
+        <Fade left cascade>{title}</Fade>
+      </TextHeader>
     </ContainerHeader>
   );
 };
