@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
+
 html {
   box-sizing: border-box;
 }
+
 body {
-  background: #2C5364;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #203A43, #2C5364);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #203A43, #2C5364); 
-  font-family: Arial, Helvetica, sans-serif;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background-image: 
+  linear-gradient(to right, rgba(0, 0, 0, 0.52), rgba(24, 13, 21, 0.73)),
+  url('https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=9400');
+  font-family: 'Gemunu Libre', sans-serif;
+  font-size: 20px;
+  background-size: cover;
+  
 }
 ul {
   list-style: none;
@@ -17,20 +24,28 @@ span.resultado {
   width: 100%;
 }
 .resultado-enter {
-  transition: .5s;
+  transition: 0.5s;
 }
-.resultado-enter.resultado-enter-active{
+
+
+.resultado-enter.resultado-enter-active {
   transform: translateY(0%);
 }
-.resultado-exit{
+.resultado-exit {
   transform: translateY(0);
-  transition: .5s;
-  position : absolute;
+  transition: 0.5s;
+  position: absolute;
   left: 0;
-  bottom : 0;
+  bottom: 0;
   right: 0;
 }
-.resultado-exit-active{
+.resultado-exit-active {
   opacity: 0;
   transform: translateY(-10%);
+}
+
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
 }

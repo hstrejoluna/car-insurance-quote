@@ -3,16 +3,16 @@ import styled from "@emotion/styled";
 import Fade from "@stahl.luke/react-reveal";
 
 const ContainerHeader = styled.header`
-  background-color: #203a43;
+  background-color: #00000076;
   padding: 10px;
   font-weight: bold;
   color: #ffffff;
 `;
 
 const TextHeader = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   margin: 0;
-  font-family: "Slabo 27px", serif;
+  font-family: 'Gemunu Libre', sans-serif;
   text-align: center;
 `;
 
