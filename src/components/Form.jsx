@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { getYear } from "../helper";
+import { getYear, calculateBrand } from "../helper";
 
 const Field = styled.div`
   display: flex;
@@ -109,6 +109,8 @@ const Form = () => {
     const diff = getYear(year);
 
     result -= (diff * 3 * result) / 100;
+
+    result = calculateBrand(brand) * result;
   };
 
   return (
