@@ -1,13 +1,39 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const Field = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
   flex: 0 0 100px;
+`;
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 3rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.028),
+      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.04),
+      12.5px 12.5px 10px rgba(0, 0, 0, 0.05),
+      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.06),
+      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.072),
+      100px 100px 80px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
 `;
 
 const Select = styled.select`
@@ -40,21 +66,59 @@ const InputRadio = styled.input`
   }
 `;
 
+const Error = styled.div`
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const Form = () => {
+  const [data, saveData] = useState({
+    brand: "",
+    year: "",
+    plan: "",
+  });
+
+  const [error, saveError] = useState(false);
+
+  // Extract values from state
+  const { brand, year, plan } = data;
+
+  const getInfo = (e) => {
+    saveData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const quoteInsurance = (e) => {
+    e.preventDefault();
+
+    if (brand.trim() === "" || year.trim() === "" || plan.trim() === "") {
+      saveError(true);
+      return;
+    }
+    saveError(false);
+  };
+
   return (
-    <form>
+    <form onSubmit={quoteInsurance}>
+      {error ? <Error>All fields are required</Error> : null}
       <Field>
         <Label>Brand</Label>
-        <Select>
-          <option value="1"> -- CHOOSE ONE --</option>
-          <option value="2">American</option>
-          <option value="3">European</option>
-          <option value="4">Asian</option>
+        <Select name="brand" value={brand} onChange={getInfo}>
+          <option value=""> -- CHOOSE ONE --</option>
+          <option value="American">American</option>
+          <option value="European">European</option>
+          <option value="Asian">Asian</option>
         </Select>
       </Field>
       <Field>
         <Label>Year</Label>
-        <Select>
+        <Select name="year" value={year} onChange={getInfo}>
           <option value="">-- CHOOSE ONE --</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
@@ -69,12 +133,24 @@ const Form = () => {
         </Select>
       </Field>
       <Label>Plan</Label>
-      <InputRadio type="radio" name="plan" value="basic" />
+      <InputRadio
+        type="radio"
+        name="plan"
+        value="basic"
+        checked={plan === "basic"}
+        onChange={getInfo}
+      />
       Basic
-      <InputRadio type="radio" name="plan" value="complete" />
-      <button type="button">Quote</button>
+      <InputRadio
+        type="radio"
+        name="plan"
+        value="complete"
+        checked={plan === "complete"}
+        onChange={getInfo}
+      />{" "}
+      Complete
+      <Button type="submit">Quote</Button>
     </form>
   );
 };
-
 export default Form;
