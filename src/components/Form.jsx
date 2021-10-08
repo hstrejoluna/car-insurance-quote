@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { getYear, calculateBrand } from "../helper";
+import { getYear, calculateBrand, getPlan } from "../helper";
 
 const Field = styled.div`
   display: flex;
@@ -111,6 +111,9 @@ const Form = () => {
     result -= (diff * 3 * result) / 100;
 
     result = calculateBrand(brand) * result;
+
+    const incrementPlan = getPlan(plan);
+    result = parseFloat(incrementPlan * result).toFixed(2);
   };
 
   return (
