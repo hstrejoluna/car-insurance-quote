@@ -76,7 +76,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = () => {
+const Form = ({saveResume}) => {
   const [data, saveData] = useState({
     brand: "",
     year: "",
@@ -114,6 +114,11 @@ const Form = () => {
 
     const incrementPlan = getPlan(plan);
     result = parseFloat(incrementPlan * result).toFixed(2);
+
+    saveResume({
+      quote: result,
+      data
+    })
   };
 
   return (
