@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { firstUppercase } from "../helper";
 import Fade from "@stahl.luke/react-reveal/Fade";
@@ -28,5 +29,9 @@ const Resume = ({ data }) => {
       </ContainerResume>
     </Fade>
   );
+};
+
+Resume.PropTypes = {
+  data: PropTypes.object.isRequired,
 };
 export default Resume;

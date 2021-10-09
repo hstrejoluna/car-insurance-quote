@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
 const Message = styled.p`
@@ -30,8 +31,14 @@ const Result = ({ quote }) => {
     <Message>No hay resultados</Message>
   ) : (
     <ResultQuote>
-      <StrQuote>the total is: {quote}</StrQuote>
+      <StrQuote>
+        the total is: <span>{quote}</span>
+      </StrQuote>
     </ResultQuote>
-  );    
+  );
+};
+
+Result.PropTypes = {
+  quote: PropTypes.number.isRequired,
 };
 export default Result;
