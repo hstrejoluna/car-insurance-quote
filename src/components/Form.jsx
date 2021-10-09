@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { getYear, calculateBrand, getPlan } from "../helper";
 
@@ -76,7 +77,7 @@ const Error = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Form = ({saveResume}) => {
+const Form = ({ saveResume, saveLoading }) => {
   const [data, saveData] = useState({
     brand: "",
     year: "",
@@ -115,10 +116,15 @@ const Form = ({saveResume}) => {
     const incrementPlan = getPlan(plan);
     result = parseFloat(incrementPlan * result).toFixed(2);
 
-    saveResume({
-      quote: result,
-      data
-    })
+    saveLoading(true);
+
+    setTimeout(() => {
+      saveLoading(false);
+      saveResume({
+        quote: Number(result),
+        data,
+      });
+    }, 3000);
   };
 
   return (
@@ -170,4 +176,10 @@ const Form = ({saveResume}) => {
     </form>
   );
 };
+
+Form.propTypes = {
+  saveResume: PropTypes.func.isRequired,
+  saveLoading: PropTypes.func.isRequired,
+};
+
 export default Form;

@@ -1,14 +1,12 @@
 import React from "react";
+import { useState } from "react";
+import Flip from "@stahl.luke/react-reveal/Flip";
 import Header from "./components/Header";
 import styled from "@emotion/styled";
 import Form from "./components/Form";
 import Resume from "./components/Resume";
 import Result from "./components/Result";
-
-import { useState } from "react";
-
-
-import Flip from "@stahl.luke/react-reveal/Flip";
+import Spinner from "./components/Spinner";
 
 const Container = styled.div`
   max-width: 600px;
@@ -29,6 +27,9 @@ const App = () => {
       plan: "",
     },
   });
+
+  const [ loading, saveLoading ] = useState(false);
+
   const { quote, data } = resume;
 
   return (
@@ -37,13 +38,11 @@ const App = () => {
         <Header title="Car Insurance Quote" />
 
         <ContainerForm>
-          <Form saveResume={saveResume} />
-          <Resume 
-            data={data}
-          />
-          <Result
-            quote={quote}
-          />
+          <Form saveResume={saveResume} saveLoading={saveLoading} />
+          {loading ? <Spinner /> : null}
+
+          <Resume data={data} />
+          <Result quote={quote} />
         </ContainerForm>
       </Container>
     </Flip>
