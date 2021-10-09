@@ -34,7 +34,6 @@ const App = () => {
   return (
     <Container>
       <Header title="Car Insurance Quote" />
-      console.log({quote})
       <ContainerForm>
         <Form saveResume={saveResume} saveLoading={saveLoading} />
         {loading ? <Spinner /> : null}
