@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import styled from "@emotion/styled";
 import Form from "./components/Form";
 import Resume from "./components/Resume";
+import Result from "./components/Result";
+
 import { useState } from "react";
 
 
@@ -27,7 +29,7 @@ const App = () => {
       plan: "",
     },
   });
-  const { data } = resume;
+  const { quote, data } = resume;
 
   return (
     <Flip bottom cascade>
@@ -38,6 +40,9 @@ const App = () => {
           <Form saveResume={saveResume} />
           <Resume 
             data={data}
+          />
+          <Result
+            quote={quote}
           />
         </ContainerForm>
       </Container>
