@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import Flip from "@stahl.luke/react-reveal/Flip";
 import Header from "./components/Header";
 import styled from "@emotion/styled";
 import Form from "./components/Form";
@@ -28,24 +27,22 @@ const App = () => {
     },
   });
 
-  const [ loading, saveLoading ] = useState(false);
+  const [loading, saveLoading] = useState(false);
 
   const { quote, data } = resume;
 
   return (
-    <Flip bottom cascade>
-      <Container>
-        <Header title="Car Insurance Quote" />
+    <Container>
+      <Header title="Car Insurance Quote" />
+      console.log({quote})
+      <ContainerForm>
+        <Form saveResume={saveResume} saveLoading={saveLoading} />
+        {loading ? <Spinner /> : null}
 
-        <ContainerForm>
-          <Form saveResume={saveResume} saveLoading={saveLoading} />
-          {loading ? <Spinner /> : null}
-
-          <Resume data={data} />
-          <Result quote={quote} />
-        </ContainerForm>
-      </Container>
-    </Flip>
+        <Resume data={data} />
+        {!loading ?  <Result quote={quote} /> : null}
+      </ContainerForm>
+    </Container>
   );
 };
 

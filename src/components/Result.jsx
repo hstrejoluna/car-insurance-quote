@@ -10,7 +10,7 @@ const Message = styled.p`
   text-align: center;
 `;
 
-const ResultQuote = styled.p`
+const ResultQuote = styled.div`
   text-align: center;
   padding: 0.5rem;
   border: 1px solid #e1e1e1;
@@ -30,15 +30,16 @@ const Result = ({ quote }) => {
   return quote === 0 ? (
     <Message>No hay resultados</Message>
   ) : (
+    console.log({quote}),
     <ResultQuote>
       <StrQuote>
-        the total is: <span>{quote}</span>
+        the total is: $ <span>{quote}</span>
       </StrQuote>
     </ResultQuote>
   );
 };
 
-Result.PropTypes = {
+Result.propTypes = {
   quote: PropTypes.number.isRequired,
 };
 export default Result;

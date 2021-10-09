@@ -31,7 +31,7 @@ const Resume = ({ data }) => {
   );
 };
 
-Resume.PropTypes = {
+Resume.propTypes = {
   data: PropTypes.object.isRequired,
 };
 export default Resume;

@@ -92,7 +92,7 @@ const Form = ({ saveResume, saveLoading }) => {
   const getInfo = (e) => {
     saveData({
       ...data,
-      [e.target.name]: e.target.value,
+      [e.target.name] : e.target.value,
     });
   };
 
@@ -109,7 +109,7 @@ const Form = ({ saveResume, saveLoading }) => {
 
     const diff = getYear(year);
 
-    result -= (diff * 3 * result) / 100;
+    result -= ((diff * 3) * result) / 100;
 
     result = calculateBrand(brand) * result;
 
@@ -124,7 +124,7 @@ const Form = ({ saveResume, saveLoading }) => {
         quote: Number(result),
         data,
       });
-    }, 3000);
+    }, 800);
   };
 
   return (
